@@ -1,1 +1,51 @@
-{"productName":"Sabores de Natal","price":19.9,"checkoutUrl":"https://pay.cakto.com.br/kb3fq4x_1250915","supportEmail":"","contactName":"","previewPages":[],"reviews":[],"metaPixelId":"","images":{"hero":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=85","roast":"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80","salad":"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80","farofa":"https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=700&q=80","lasagna":"https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=700&q=80","pudding":"https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80","chocolate":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80","toast":"https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=700&q=80","mousse":"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=700&q=80"}}
+{
+  "productName": "Sabores de Natal",
+  "price": 19.9,
+  "checkoutServiceFee": 0.99,
+  "recipeCount": 17,
+  "checkoutUrl": "https://pay.cakto.com.br/kb3fq4x_1250915",
+  "supportEmail": "",
+  "contactName": "Carlos Sanches",
+  "metaPixelId": "",
+  "coverImage": "/images/product.webp",
+  "previewPages": [],
+  "categories": [
+    {
+      "name": "Pratos salgados",
+      "description": "Os protagonistas de uma ceia cheia de sabor.",
+      "image": "/images/pratos.webp",
+      "examples": ["Lombo ao molho de laranja", "Frango com ervas"]
+    },
+    {
+      "name": "Acompanhamentos",
+      "description": "Receitas que completam a mesa e combinam com a festa.",
+      "image": "/images/acompanhamentos.webp",
+      "examples": ["Salpicão de frango", "Arroz à grega"]
+    },
+    {
+      "name": "Sobremesas",
+      "description": "Aquela última colherada que todo mundo espera.",
+      "image": "/images/sobremesas.webp",
+      "examples": ["Pudim de leite condensado", "Pavê de chocolate"]
+    }
+  ],
+  "images": {
+    "hero": "/images/product.webp",
+    "heroMobile": "/images/hero-food.webp",
+    "editorial": "/images/table-editorial.webp"
+  },
+  "deliveryText": "Após a confirmação do pagamento, você recebe acesso digital conforme as instruções enviadas pela plataforma. Confira o e-mail informado na compra e siga as orientações para acessar seu PDF.",
+  "paymentMethods": [
+    "Pix",
+    "Cartão de crédito",
+    "PicPay",
+    "Google Pay",
+    "Apple Pay"
+  ],
+  "refundText": "Sim. Consulte os termos da compra e as instruções oficiais de reembolso da Cakto. A plataforma informa um prazo geral de 7 dias após a compra para produtos digitais. Para solicitar, acesse o portal de reembolso com o e-mail ou telefone utilizado na compra e siga as orientações apresentadas.",
+  "termsUrl": "https://www.cakto.com.br/termo-de-compra-e-venda",
+  "refundUrl": "https://www.cakto.com.br/reembolso",
+  "privacyUrl": "",
+  "reviews": [],
+  "productImageSrcSet": "/images/product-small.webp 480w, /images/product.webp 960w"
+}

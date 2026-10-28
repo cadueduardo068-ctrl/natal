@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.tar.gz
 *.zip
+test-results/
+playwright-report/
+.prerender/
+reports/
