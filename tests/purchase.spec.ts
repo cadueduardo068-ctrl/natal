@@ -4,7 +4,7 @@ const config = JSON.parse(
   fs.readFileSync(new URL("../public/config.json", import.meta.url), "utf8"),
 );
 const checkout = "https://pay.cakto.com.br/kb3fq4x_1250915";
-test("layout legível, sem overflow ou erros, preço e CTA inicial visíveis", async ({
+test("layout legível, sem overflow ou erros, preço e CTA após imagem", async ({
   page,
 }, info) => {
   const errors: string[] = [];
@@ -25,7 +25,12 @@ test("layout legível, sem overflow ou erros, preço e CTA inicial visíveis", a
   await expect(page.locator(".hero-offer strong")).toHaveText("R$ 19,90");
   const box = await page.locator('[data-cta="hero"]').boundingBox();
   expect(box).not.toBeNull();
-  expect(box!.y + box!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
+  const image = await page.locator(".product-showcase").boundingBox();
+  expect(box!.y).toBeGreaterThanOrEqual(image!.y + image!.height);
+  expect(box!.height).toBeGreaterThanOrEqual(48);
+  expect(await page.locator('[data-cta="hero"]').getAttribute("href")).toBe(
+    checkout,
+  );
   await expect(page.locator(".consent-banner")).toHaveCount(0);
   await page.locator("#oferta").scrollIntoViewIfNeeded();
   await page.locator("#duvidas").scrollIntoViewIfNeeded();
@@ -64,9 +69,9 @@ test("todos os CTAs abrem diretamente o checkout, inclusive no user agent do Fac
   );
   const places = [
     "hero",
-    "editorial",
+    "final",
     "offer",
-    ...(Number(info.project.name.slice(0, 3)) < 700 ? ["mobile-sticky"] : []),
+    ...(page.viewportSize()!.width < 700 ? ["mobile-sticky"] : []),
   ];
   for (const placement of places) {
     await page.goto("/");
@@ -86,7 +91,7 @@ test("barra móvel, FAQ, privacidade e foco por teclado", async ({
   await expect(page.locator("h1")).toBeVisible();
   await expect(page.locator(".sticky-offer")).not.toBeVisible();
   await page.locator("#receitas").scrollIntoViewIfNeeded();
-  if (info.project.name === "360" || info.project.name.startsWith("390"))
+  if (page.viewportSize()!.width < 700)
     await expect(page.locator(".sticky-offer")).toBeVisible();
   await page.locator("#duvidas").scrollIntoViewIfNeeded();
   const summary = page.getByText("Posso acessar pelo celular?", {

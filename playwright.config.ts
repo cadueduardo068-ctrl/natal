@@ -8,6 +8,7 @@ const browser = [
 if (!browser) throw new Error("Nenhum Chrome/Edge local disponível para QA.");
 export default defineConfig({
   testDir: "./tests",
+  testIgnore: "**/*.test.mjs",
   fullyParallel: false,
   workers: 1,
   timeout: 30000,
@@ -24,6 +25,14 @@ export default defineConfig({
   },
   projects: [
     {
+      name: "320",
+      use: {
+        viewport: { width: 320, height: 812 },
+        isMobile: true,
+        hasTouch: true,
+      },
+    },
+    {
       name: "360",
       use: {
         viewport: { width: 360, height: 800 },
@@ -39,6 +48,14 @@ export default defineConfig({
         hasTouch: true,
         userAgent:
           "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/485.0.0.0.0;]",
+      },
+    },
+    {
+      name: "430",
+      use: {
+        viewport: { width: 430, height: 932 },
+        isMobile: true,
+        hasTouch: true,
       },
     },
     { name: "768", use: { viewport: { width: 768, height: 1024 } } },

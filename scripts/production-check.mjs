@@ -55,6 +55,11 @@ try {
     const href = await page.locator('[data-cta="hero"]').getAttribute("href");
     if (href !== "https://pay.cakto.com.br/kb3fq4x_1250915")
       throw Error("Checkout incorreto");
+    if (javaScriptEnabled) {
+      await page.getByRole('button', {name:'Privacidade e cookies',exact:true}).click();
+      if (!(await page.getByRole('dialog').isVisible())) throw Error('Hidratação interativa não concluiu');
+      await page.keyboard.press('Escape');
+    }
     console.log(
       JSON.stringify({ javaScriptEnabled, hero: true, href, errors }),
     );

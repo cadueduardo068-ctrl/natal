@@ -8,9 +8,12 @@
     "build": "npm run typecheck && npm run build:client && npm run build:prerender && npm run build:check",
     "typecheck": "tsc --noEmit",
     "build:client": "vite build",
-    "build:prerender": "vite build --ssr src/server.tsx --outDir .prerender && node scripts/prerender.mjs",
+    "build:prerender": "vite build --config vite.prerender.config.ts && node scripts/prerender.mjs",
     "build:check": "node scripts/check-build.mjs",
     "test": "playwright test",
+    "test:build": "node --test tests/build-config.test.mjs",
+    "deploy": "wrangler deploy --config wrangler.jsonc",
+    "deploy:check": "wrangler deploy --config wrangler.jsonc --dry-run --outdir .wrangler/dry-run",
     "audit:mobile": "node scripts/audit-production.mjs"
   },
   "engines": {

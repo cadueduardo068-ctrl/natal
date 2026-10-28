@@ -2,12 +2,15 @@
 
 Reconstrução em React 19, Vite, TypeScript, Tailwind e Framer Motion. O build pré-renderiza o HTML: a oferta e os links de compra funcionam mesmo antes do JavaScript. A saída é estática, compatível com Cloudflare Pages.
 
+O redesign mais recente usa fundo branco, verde e turquesa, composição centralizada e botões verdes. Veja [REDESIGN.md](REDESIGN.md) para o escopo e a validação atual. `VALIDACAO.md` registra a etapa visual anterior.
+
 ## Rodar e verificar
 
 ```sh
 npm ci
 npm run dev
 npm run build
+npm run test:build
 npm test
 npm run audit:mobile
 node scripts/production-check.mjs
@@ -35,15 +38,15 @@ Com ID configurado e consentimento: um `PageView` por carregamento e o evento pe
 
 Não há evento `InitiateCheckout` ou `Purchase` na landing page. Um clique não comprova carregamento do checkout nem pagamento. Configure a integração oficial na Cakto para eventos que ela possa confirmar, usando o ID autorizado e verificando deduplicação no Gerenciador de Eventos da Meta. Sem ID e acesso ao painel não é possível validar o recebimento dos eventos reais na Meta; os testes isolam e verificam a lógica de consentimento e os nomes dos eventos.
 
-## Publicar na Cloudflare Pages
+## Publicar no Cloudflare
 
 Para o diagnóstico do erro de build e os fluxos distintos de Pages e Workers, consulte [CLOUDFLARE.md](CLOUDFLARE.md).
 
-1. Envie este código para seu repositório.
-2. No projeto Cloudflare Pages, use `npm ci` para instalação, `npm run build` para build e `dist` como diretório de saída.
-3. Use Node.js 24.22.0 (definido em `.node-version`) e habilite o domínio/HTTPS desejado.
-4. Atualize a URL canônica e as URLs Open Graph em `index.html` ao mudar de domínio.
-5. Faça um novo deploy depois de alterar preços, taxas, conteúdo, fotos ou configuração.
+O fluxo atual, confirmado pelo log remoto, é **Workers Builds**, Worker `natal`. Use a raiz do repositório, Node 24.22.0, Build command `npm run build` e Deploy command `npx wrangler deploy --config wrangler.jsonc`. A configuração padrão publica apenas os assets de `dist`; não injeta adaptadores e não repete o build. Para testar sem publicar, execute `npm run deploy:check`.
+
+O SSR usa uma configuração separada, `vite.prerender.config.ts`, e roda somente durante a geração do HTML. Uma migração ao Pages é opcional e não é necessária para corrigir a falha. Veja `CLOUDFLARE.md` para a causa exata, o conteúdo antigo detectado no log e os campos do painel.
+
+Atualize a URL canônica e as URLs Open Graph em `index.html` ao mudar de domínio. Gere um novo build após mudanças na configuração do produto.
 
 O projeto também mantém a identidade de hospedagem existente em `.openai/hosting.json`. Esse ID não deve ser trocado ou reutilizado para criar outro site. A publicação atual do Sites é privada; a liberação para visitantes dos anúncios é uma mudança de audiência separada e ainda depende de autorização explícita.
 
