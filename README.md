@@ -37,9 +37,11 @@ Não há evento `InitiateCheckout` ou `Purchase` na landing page. Um clique não
 
 ## Publicar na Cloudflare Pages
 
+Para o diagnóstico do erro de build e os fluxos distintos de Pages e Workers, consulte [CLOUDFLARE.md](CLOUDFLARE.md).
+
 1. Envie este código para seu repositório.
 2. No projeto Cloudflare Pages, use `npm ci` para instalação, `npm run build` para build e `dist` como diretório de saída.
-3. Use Node.js 22 ou 24 e habilite o domínio/HTTPS desejado.
+3. Use Node.js 24.22.0 (definido em `.node-version`) e habilite o domínio/HTTPS desejado.
 4. Atualize a URL canônica e as URLs Open Graph em `index.html` ao mudar de domínio.
 5. Faça um novo deploy depois de alterar preços, taxas, conteúdo, fotos ou configuração.
 

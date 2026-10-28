@@ -5,9 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc --noEmit && vite build && vite build --ssr src/server.tsx --outDir .prerender && node scripts/prerender.mjs",
+    "build": "npm run typecheck && npm run build:client && npm run build:prerender && npm run build:check",
+    "typecheck": "tsc --noEmit",
+    "build:client": "vite build",
+    "build:prerender": "vite build --ssr src/server.tsx --outDir .prerender && node scripts/prerender.mjs",
+    "build:check": "node scripts/check-build.mjs",
     "test": "playwright test",
     "audit:mobile": "node scripts/audit-production.mjs"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
   },
   "dependencies": {
     "framer-motion": "^12.0.0",
@@ -26,6 +33,7 @@
     "sharp": "^0.35.5",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
-    "vite": "^6.0.0"
+    "vite": "^6.0.0",
+    "wrangler": "4.154.0"
   }
 }
